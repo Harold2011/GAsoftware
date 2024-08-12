@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('unididactica', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+            $table->string('name', 320);
             $table->unsignedBigInteger('grado_id')->unsigned();            
             $table->foreign('grado_id')->references('id')->on('grado')->onDelete('cascade');
             $table->unsignedBigInteger('area_id')->unsigned();            

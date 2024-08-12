@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers\Malla;
+
+use App\Http\Controllers\Controller;
+use App\Models\malla;
+use App\Models\indicadorDesempeño;
+use Illuminate\Http\Request;
+
+class IndicadorDesempeñoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+
+    public function store(Request $request)
+    {
+        indicadorDesempeño::create($request->all());
+        $data=[];
+        $data['desempeño']=$request->name;
+        return response()->json($data);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Request $request)
+    {
+        $indicadoresDesempeño=indicadorDesempeño::where('desempeno_id',$request->elemento)->get();
+        return $indicadoresDesempeño;
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(malla $malla)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, malla $malla)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(malla $malla)
+    {
+        //
+    }
+}

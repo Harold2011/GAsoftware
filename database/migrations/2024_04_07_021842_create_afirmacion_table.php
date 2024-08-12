@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('afirmacion', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+            $table->string('name', 320);
             $table->unsignedBigInteger('desempeno_id')->unsigned();            
             $table->foreign('desempeno_id')->references('id')->on('desempeno')->onDelete('cascade');
             $table->timestamps();

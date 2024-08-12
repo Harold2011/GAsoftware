@@ -66,9 +66,9 @@
                                   <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                     <div class="overflow-hidden">
                                       <table
-                                        class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                                        class="min-w-full text-left text-sm font-light text-surface">
                                         <thead
-                                          class="border-b border-neutral-200 font-medium dark:border-white/10">
+                                          class="border-b border-neutral-200 font-medium">
                                           <tr>
                                             <th scope="col" class="px-6 py-4">#</th>
                                             <th scope="col" class="px-6 py-4">Nombre</th>
@@ -77,7 +77,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach ($grado as $grados)
-                                          <tr class="border-b border-neutral-200 dark:border-white/10">
+                                          <tr class="border-b border-neutral-200">
                                               <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $grados->id }}</td>
                                               <td class="whitespace-nowrap px-6 py-4">{{ $grados->name }}</td>
                                               <td class="whitespace-nowrap px-6 py-4">

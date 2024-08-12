@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
 
@@ -53,18 +54,19 @@
                     </span>
                 </div>
             @endif
-                <div class="flex flex-wrap w-full">
+                <div id="mallaContainer" class="flex flex-wrap w-full">
                     <div class="pt-10 py-10 px-10 w-full">
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('componente.store') }}">
                             @csrf
                             <label for="componentes" class="block">Componentes</label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link" name="name" type="text" placeholder="Unidad didactica">
+                            <input type="hidden" id="unididactica" name="unididactica_id" value="{{ $id }}">
+                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link0" name="name" type="text" placeholder="Ingresa componente">
                             <!-- Campos dinámicos -->
                             <div id="campos-dinamicos">
                                 <!-- Campos dinámicos se agregarán aquí -->
                             </div>
-                            <button type="button" id="agregar-campo">Agregar Campo</button>
-                            <button type="submit">Guardar</button>
+                            <button class="inline-flex items-center bg-sky-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-500 text-white rounded text-base mt-4  md:mt-0" type="button" id="agregar-campo">Agregar Campo</button>
+                            <button class="inline-flex items-center bg-sky-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-500 text-white rounded text-base mt-4  md:mt-0" type="button" onclick={enviarFormu()} id="enviar-formu">Guardar</button>
                         </form>
                         
                     </div>
@@ -73,12 +75,45 @@
         </section>
     </div>
 </main>
+<script src="/js/malla.js"></script>
 <script>
-document.getElementById('agregar-campo').addEventListener('click', function() {
-    var div = document.createElement('div');
-    div.innerHTML = '<input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link" name="name" type="text" placeholder="Unidad didactica">';
-    document.getElementById('campos-dinamicos').appendChild(div);
-});
+
+    var indice=1;
+    document.getElementById('agregar-campo').addEventListener('click', function() {
+        var div = document.createElement('div');
+        div.innerHTML = `<input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link${indice}" name="name" type="text" placeholder="Ingresa un componente">`;
+        document.getElementById('campos-dinamicos').appendChild(div);
+        indice++;
+    });
+    function enviarFormu(){
+        event.preventDefault();
+        const unididactica_id=document.getElementById('unididactica').value;
+        for(var i=0; i<indice;i++){
+            $.ajax({
+                url:"/guardarComponente",
+                method:"POST",
+                headers:{
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                data:{
+                    name:document.getElementById(`application-link${i}`).value,
+                    unididactica_id,
+                },
+                success:function(response)
+                {
+                    console.log(response);                    
+                }
+            })                
+        }
+        $.ajax({
+            success:function(response)
+            {
+                window.location.href = "{{ route('componente.create')}}";  
+            }
+        }) 
+    }
+
+    
 </script>
 </body>
 

@@ -1,4 +1,4 @@
-<nav aria-label="menu nav" class="bg-gray-100 z-0 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full top-0">
+<nav aria-label="menu nav" class="bg-gray-100 z-0 z-20 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full top-0">
 
     <div class="flex flex-wrap items-center">
         <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">

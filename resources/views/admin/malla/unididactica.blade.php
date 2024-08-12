@@ -55,7 +55,7 @@
             @endif
                 <div class="flex flex-wrap w-full">
                     <div class="pt-10 py-10 px-10 w-full">
-                        <form action="{{ route('malla.store') }}" method="post">
+                        <form action="{{ route('unidad.store') }}" method="post">
                             @csrf
                             <div class="grid grid-cols-2 gap-2">
                                     <div>
@@ -76,7 +76,7 @@
                                     </div>
                             </div>
                             <label for="unididactica" class="block">Unidad didactica:</label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link" name="name" type="text" placeholder="Unidad didactica">
+                            <textarea class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3" id="application-link" name="name" placeholder="Ingresa la unidad didactica" rows="5"></textarea>
                             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button class="w-full inline-flex justify-center rounded-md border border-transparent shadow-md px-4 py-2 bg-sky-400 font-medium text-gray-50 hover:bg-gray-700 hover:text-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"><i class="fa fa-arrow-right"></i>Siguente</button>
                             </div>

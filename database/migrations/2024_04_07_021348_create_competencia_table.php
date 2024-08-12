@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('competencia', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+            $table->string('name', 320);
             $table->unsignedBigInteger('estandar_id')->unsigned();            
             $table->foreign('estandar_id')->references('id')->on('estandar')->onDelete('cascade');
             $table->timestamps();
